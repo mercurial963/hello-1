@@ -4,7 +4,7 @@ on:
     branches:
       - beta
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -20,3 +20,20 @@ jobs:
           tag: beta
           cache: true
           cache_registry: cache
+  deploy:
+    runs-on: 'ubuntu-latest'
+    steps:
+    - uses: actions/checkout@v1
+    - name: 'Deploy'
+      uses: 'deliverybot/helm@v1'
+      with:
+        release: 'hello1'
+        namespace: 'default'
+        chart: 'app'
+        token: '${{ github.token }}'
+        value-files: >-
+        [
+          "values-test.yaml"
+        ]
+      env:
+        KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
