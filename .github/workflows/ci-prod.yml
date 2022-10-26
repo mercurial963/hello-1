@@ -1,0 +1,22 @@
+name: prod
+on:
+  push:
+    branches:
+      - main
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+      - name: Kaniko build
+        uses: aevea/action-kaniko@master
+        with:
+          registry: ghcr.io
+          password: ${{ secrets.GITHUB_TOKEN }}
+          build_file: Dockerfile
+          path: hello1/
+          image: hello1
+          tag: prod
+          cache: true
+          cache_registry: cache
