@@ -15,7 +15,7 @@ jobs:
           registry: ghcr.io
           password: ${{ secrets.GITHUB_TOKEN }}
           build_file: Dockerfile
-          path: hello1/
+          path: .
           image: hello1
           tag: prod
           cache: true
