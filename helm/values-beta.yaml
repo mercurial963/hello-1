@@ -1,6 +1,13 @@
 replicaCount: 2
+env:
+  - name: port
+    value: "6379"
+  - name: host
+    value: "80"
+  - name: password
+    value: "secretpassword"
 image:
-  repository: nginx
+  repository: ghcr.io/mercurial963/hello-1/hello1:beta
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: ""
