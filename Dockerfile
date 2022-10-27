@@ -4,5 +4,5 @@ COPY . .
 RUN yarn install --frozen-lockfile
 ENV NODE_ENV production
 
-EXPOSE 80
+EXPOSE 8000
 CMD ["yarn", "start"]
