@@ -1,8 +1,8 @@
-name: beta
+name: prod
 on:
   push:
     branches:
-      - beta
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,24 +17,21 @@ jobs:
           build_file: Dockerfile
           path: .
           image: hello1
-          tag: beta
+          tag: prod
           cache: true
           cache_registry: cache
   deploy:
-    runs-on: 'ubuntu-latest'
+    runs-on: "ubuntu-latest"
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: 'Deploy'
-        uses: 'deliverybot/helm@v1'
+      - name: "Deploy"
+        uses: "deliverybot/helm@v1"
         with:
-          release: 'hello1'
-          namespace: 'default'
-          chart: 'app'
-          token: '${{ github.token }}'
-          value-files: >-
-          [
-            "values-beta.yaml"
-          ]
+          release: "hello1"
+          namespace: "default"
+          chart: "app"
+          token: "${{ github.token }}"
+          value-files: "values-prod.yaml"
         env:
-          KUBECONFIG_FILE: '${{ secrets.KUBECONFIG }}'
+          KUBECONFIG_FILE: "${{ secrets.KUBECONFIG }}"
