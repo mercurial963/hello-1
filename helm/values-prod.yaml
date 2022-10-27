@@ -8,9 +8,10 @@ env:
     value: "secretpassword"
 image:
   repository: ghcr.io/mercurial963/hello-1/hello1
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "prod"
+  port: 8000
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
